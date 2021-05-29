@@ -7,7 +7,16 @@
         "format": "auto"
       },
       "dimensionsSpec": {
-        "dimensions": [],
+        "dimensions": [
+          {"type":"string", "name":"team"},
+          {"type":"string", "name":"against"},
+          {"type":"long", "name":"points"},
+          {"type":"long", "name":"scored"},
+          {"type":"long", "name":"conceded"},
+          {"type":"auto", "name":"matchDate"},
+          {"type":"long", "name":"matchDay"},
+          {"type":"long", "name":"season"}
+        ],
         "dimensionExclusions": [
           "timestamp",
           "value"

@@ -23,10 +23,11 @@ dependencies {
 
 val topicName: String = if(project.hasProperty("topic.name")) "${project.ext["topic.name"]}" else "football_matches"
 val logLines: String = if(project.hasProperty("log.lines")) "${project.ext["log.lines"]}" else "false"
+val delay:String = if(project.hasProperty("season.delay")) "${project.ext["season.delay"]}"  else "0"
 
 task("runApp", JavaExec::class) {
     main = "com.github.streams.playmatches.PlayMatchEventApp"
     classpath = sourceSets["main"].runtimeClasspath
     jvmArgs = listOf("-Xms256m", "-Xmx256m")
-    args = listOf(topicName, logLines)
+    args = listOf(topicName, logLines, delay)
 }

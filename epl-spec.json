@@ -1,0 +1,59 @@
+{
+    "type": "kafka",
+    "dataSchema": {
+      "dataSource": "football_matches",
+      "timestampSpec": {
+        "column": "timestamp",
+        "format": "auto"
+      },
+      "dimensionsSpec": {
+        "dimensions": [],
+        "dimensionExclusions": [
+          "timestamp",
+          "value"
+        ]
+      },
+      "metricsSpec": [
+        {
+          "name": "count",
+          "type": "count"
+        },
+        {
+          "name": "value_sum",
+          "fieldName": "value",
+          "type": "doubleSum"
+        },
+        {
+          "name": "value_min",
+          "fieldName": "value",
+          "type": "doubleMin"
+        },
+        {
+          "name": "value_max",
+          "fieldName": "value",
+          "type": "doubleMax"
+        }
+      ],
+      "granularitySpec": {
+        "type": "uniform",
+        "segmentGranularity": "HOUR",
+        "queryGranularity": "NONE"
+      }
+    },
+    "ioConfig": {
+      "topic": "football_matches",
+      "inputFormat": {
+        "type": "json"
+      },
+      "consumerProperties": {
+        "bootstrap.servers": "kafka-0:9092"
+      },
+      "taskCount": 1,
+      "replicas": 1,
+      "taskDuration": "PT1H"
+    },
+    "tuningConfig": {
+      "type": "kafka",
+      "maxRowsPerSegment": 5000000
+    }
+  }
